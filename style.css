@@ -1,0 +1,1043 @@
+/*  
+    Auth:   PCM
+    Origin: 01/18/26
+    Cust:   KUB
+*/
+
+
+/* imported fonts */
+@font-face {font-family: "MyriadPro"; src:url("fonts/MyriadPro.ttf")}
+@font-face {font-family: "MyriadPro-Light"; src:url("fonts/MyriadProLight.ttf")}
+@font-face {font-family: "MyriadPro-Bold"; src:url("fonts/MyriadProBold.ttf")}
+
+.font-type-thin {font-family:"MyriadPro-Light";}
+.font-type-bold {font-family:"MyriadPro-Bold";}
+
+/* imported special icon fonts */
+@font-face {font-family: 'Oscar-Origins'; src: url('fonts/Oscar-Origins.ttf') format('truetype');}
+@font-face {font-family: 'Oscar-Extras'; src: url('fonts/Oscar-Extras.ttf') format('truetype');}
+
+:root {
+/* pixel variables */ 
+--size-00: 0px;
+--size-01: 1px;
+--size-02: 2px;
+--size-03: 3px;
+--size-05: 5px;
+--size-10: 10px;
+--size-15: 15px;
+--size-20: 20px;
+--size-30: 30px;
+/* color variables */ 
+--color-red: #ee0153;
+--color-grn: #26d818;
+--color-wht: #ffffff;
+--color-blk: #000000;
+--color-lgy: #d5d5d6;
+--color-dgy: #696969;
+--color-blu1: #01A5E3;
+--color-blu2: #0295CD;
+--color-blu3: #0386BA;
+--color-blu4: #0C5C8C;
+--color-blu5: #144677;
+--color-bluSimiTrans: #14467794;
+--color-cyn1: #d1f6f8; 
+--color-cyn2: #8de9ed;
+--color-cyn3: #1bd4db;
+--color-cyn4: #00878e;
+--color-cyn5: #00555c;
+--color-red1: #fcccdd;
+--color-red2: #f56798;
+--color-red3: #ee0153;
+--color-red4: #d4003a;
+--color-red5: #6f0000;
+--color-mag1: #fad0ef;
+--color-mag2: #f173d0;
+--color-mag3: #e816b0;
+--color-mag4: #b5007d;
+--color-mag5: #690031;
+--color-grn1: #d4f8d1;
+--color-grn2: #7de974;
+--color-grn3: #26db18;
+--color-grn4: #00a800;
+--color-grn5: #005c00;
+/* semi-transparent variables */ 
+--color-o-wht: #ffffff60;
+--color-o-blk: #00000060;
+--color-o-lgy: #f1f1f460;
+--color-o-dgy: #b9b9b960;
+--color-o-blu1: #cce0ff60;
+--color-o-blu2: #67a3ff60;
+--color-o-blu3: #0166ff60;
+--color-o-blu4: #0033cc60;
+--color-o-blu5: #00008060;
+--color-o-cyn1: #d1f6f860;
+--color-o-cyn2: #8de9ed60;
+--color-o-cyn3: #1bd4db60;
+--color-o-cyn4: #00878e60;
+--color-o-cyn5: #00555c60;
+--color-o-red1: #fcccdd60;
+--color-o-red2: #f5679860;
+--color-o-red3: #ee015360;
+--color-o-red4: #d4003a60;
+--color-o-red5: #6f000060;
+--color-o-mag1: #fad0ef60;
+--color-o-mag2: #f173d060;
+--color-o-mag3: #e816b060;
+--color-o-mag4: #b5007d60;
+--color-o-mag5: #69003160;
+--color-o-grn1: #d4f8d160;
+--color-o-grn2: #7de97460;
+--color-o-grn3: #26db1860;
+--color-o-grn4: #00a80060;
+--color-o-grn5: #005c0060;
+--color-trans: #ffffff00;
+--color-indicator-back: #817f7fc4;
+/* image variables */ 
+--image-indicator-v: url(images/pics/indicator-v.png);
+--image-indicator-h: url(images/pics/indicator-h.png);
+--image-led-off: url(images/pics/glossy-red.png);
+--image-led-on: url(images/pics/glossy-green.png);
+--image-logo: url(images/pics/q-sys-logo-blk.png);
+--image-background: url(images/pics/bg-lite-50.png);
+/* gradient variables */ 
+--glossy-top: linear-gradient(#ffffff80, #ffffff0d, #ffffff00);
+--glossy-bottom: linear-gradient(#ffffff00, #ffffff00, #ffffff40);
+--gradient-audio-v: linear-gradient(#fe0101, #ffb700, #ccff00, #00ff00);
+--gradient-audio-h: linear-gradient(270deg, var(--color-blu5),var(--color-blu4), var(--color-blu3), var(--color-blu1));
+--gradient-dim-v: linear-gradient(#696969, #69696900);
+--gradient-dim-h: linear-gradient(270deg, #696969, #69696900); 
+--gradient-temp-v: linear-gradient(#f8cb07, #24aadc);
+--gradient-temp-h: linear-gradient(270deg, #f8cb07, #24aadc);
+--gradient-b-blu: linear-gradient(200deg, var(--color-blu5), var(--color-blu1));
+--gradient-b-blu-o: linear-gradient(200deg, var(--color-o-cyn3), var(--color-o-blu3));
+--gradient-e-red: linear-gradient(200deg, var(--color-mag3), var(--color-red3));
+--gradient-e-red-o: linear-gradient(200deg, var(--color-o-mag3), var(--color-o-red3));
+--gradient-e-grn: linear-gradient(200deg, var(--color-cyn3), var(--color-grn3));
+--gradient-e-grn-o: linear-gradient(200deg, var(--color-o-cyn3), var(--color-o-grn3));
+--gradient-gry: linear-gradient(var(--color-lgy), var(--color-dgy));
+--gradient-cyn: linear-gradient(var(--color-cyn1), var(--color-cyn3));
+--gradient-red: linear-gradient(var(--color-red3), var(--color-red5));
+--gradient-mag: linear-gradient(var(--color-mag3), var(--color-mag5));
+--gradient-grn: linear-gradient(var(--color-grn1), var(--color-grn3));
+
+/* Adjust Theme colors for the style sheet */
+/* global use variables */
+--global-color: var(--color-dgy);
+--global-border-color: var(--color-dgy);
+--global-border-radius: var(--size-10);
+--global-border-width: var(--size-03);
+--global-gradient: var(--gradient-b-blu);
+--global-gradient-o: var(--gradient-e-red-o);
+--global-overlay-color: var(--color-indicator-back);
+--global-bg: var(--color-wht);
+/* for use in navigation areas of the UCI */
+--navigation-color-off: var(--color-dgy);
+--navigation-bg-off: var(--global-overlay-color);
+--navigation-border-color-off: var(--color-dgy);
+--navigation-border-radius-off:var(--size-10);
+--navigation-border-width-off: var(--size-00);
+--navigation-color-on: var(--color-wht);
+--navigation-bg-on: var(--global-gradient);
+--navigation-border-color-on: var(--color-blu3);
+--navigation-border-radius-on: var(--size-15);
+--navigation-border-width-on: var(--size-00);
+/* for use in central or source selection areas of the UCI */
+--source-color-off: var(--color-dgy);
+--source-bg-off: var(--color-o-wht);
+--source-border-color-off: var(--color-dgy);
+--source-border-radius-off: var(--size-10);
+--source-border-width-off: var(--size-03);
+--source-color-on: var(--color-dgy);
+--source-bg-on: var(--global-gradient-o);
+--source-border-color-on: var(--color-dgy);
+--source-border-radius-on: var(--size-10);
+--source-border-width-on: var(--size-03);
+/* for use in highlight or transport control areas of the UCI */
+--transport-color-off: var(--color-dgy);
+--transport-bg-off: var(--global-gradient-o);
+--transport-border-color-off: var(--color-dgy);
+--transport-border-radius-off: var(--size-10);
+--transport-border-width-off: var(--size-03);
+--transport-color-on:var(--color-dgy);
+--transport-bg-on: var(--global-overlay-color);
+--transport-border-color-on: var(--color-dgy);
+--transport-border-radius-on: var(--size-10);
+--transport-border-width-on: var(--size-03);
+/* flexbox row */
+--flex-row-bg: var(--color-trans);
+--flex-row-border-color: var(--color-trans);
+--flex-row-border-radius: var(--size-00);
+--flex-row-border-width: var(--size-00);
+--flex-row-direction: row;
+--flex-row-wrap: wrap; /* choose one: wrap / no wrap */
+--flex-row-justify: flex start; /* choose one: center / flex start / flex end / space around / space between / space evenly */
+--flex-row-align-content: center; /* choose one: center / flex start / flex end / space around / space between / space evenly */ 
+--flex-row-align-items: center; /* choose one: center / flex start / flex end */ 
+--flex-row-gap: var(--size-05);
+/* flexbox column */
+--flex-column-bg: var(--color-trans);
+--flex-column-border-color: var(--color-trans);
+--flex-column-border-radius: var(--size-00);
+--flex-column-border-width: var(--size-00);
+--flex-column-direction: column;
+--flex-column-wrap: wrap; /* choose one: wrap / no wrap */
+--flex-column-justify: center; /* choose one: center / flex start / flex end / space around / space between / space evenly */
+--flex-column-align-content: center; /* choose one: center / flex start / flex end / space around / space between / space evenly */ 
+--flex-column-align-items: center; /* choose one: center / flex start / flex end */ 
+--flex-column-gap: var(--size-10);
+/* meter style variables */
+--meter-bg: var(--global-overlay-color);
+--meter-indicator-v: var(--gradient-audio-h);
+--meter-indicator-h: var(--global-gradient);
+/* fader style variables */
+--fader-slot: var(--size-15);
+--fader-slot-bg: var(--color-wht);
+--fader-border-radius: var(--global-border-radius);
+--fader-indicator-v: var(--global-gradient);
+--fader-indicator-h: var(--global-gradient);
+--fader-cap-border: var(--global-color);
+--fader-cap-bg: var(--global-overlay-color);
+--fader-bg: var(--global-overlay-color);
+/* company logos and backgrounds */
+--logo: var(--image-logo);
+--logo-background: var(--color-trans);
+--bg: var(--image-background);
+}
+
+/* global classes: apply when Style Sheet is applied to UCI*/
+
+textbox {font-family:"MyriadPro"; font-size:24px; padding: 0px; margin: 0px; border-radius: 0px; border-width: 0px;}
+groupbox {font-family:"MyriadPro"; font-size:24px; padding: 0px; margin: 0px; border-radius: 0%; border-width: 0px;}
+textblock {font-family:"MyriadPro"; font-size:24px; padding: 0px; margin: 0px; border-radius: 0px; border-width: 0px;}
+header {font-family:"MyriadPro"; font-size:24px; padding: 0px; margin: 0px; border-radius: 0px; border-width: 0px;}
+button {font-family:"MyriadPro"; font-size:24px; padding: 0px; margin: 0px; border-radius: 12px; border-width: 0px; background-color: var(--color-indicator-back);}
+/*page {background: var(--bg);}*/
+
+
+/* button classes can be used to apply different buttons style
+   to different areas of the UCI */
+
+
+.btn-pin {
+color: var(--color-blu5);
+-qsc-icon-color: var(--navigation-color-off);
+border-radius: var(--navigation-border-radius-off);
+border-width: var(--navigation-border-width-off);
+border-color: var(--navigation-border-color-off);
+background: var(--color-bluSimiTrans);
+}
+
+.btn-pin:pressed {
+color: var(--color-blu1);
+-qsc-icon-color: var(--navigation-color-on);
+border-radius: var(--navigation-border-radius-on);
+border-width: var(--navigation-border-width-on);
+border-color: var(--navigation-border-color-on);
+background: var(--color-blu1);
+}
+
+.btn-navigation {
+color: var(--navigation-color-off);
+-qsc-icon-color: var(--navigation-color-off);
+border-radius: var(--navigation-border-radius-on);
+border-width: var(--navigation-border-width-off);
+border-color: var(--navigation-border-color-off);
+background: var(--navigation-bg-off);
+}
+
+.btn-navigation:pressed {
+color: var(--navigation-color-on);
+-qsc-icon-color: var(--navigation-color-on);
+border-radius: var(--navigation-border-radius-on);
+border-width: var(--navigation-border-width-on);
+border-color: var(--navigation-border-color-on);
+background: var(--navigation-bg-on);
+}
+
+.btn-navigation:value(1) {
+color: var(--navigation-color-on);
+-qsc-icon-color: var(--navigation-color-on);
+border-radius: var(--navigation-border-radius-on);
+border-width: var(--navigation-border-width-on);
+border-color: var(--navigation-border-color-on);
+background: var(--navigation-bg-on);
+}
+
+.btn-source {
+color: var(--source-color-off);
+-qsc-icon-color: var(--source-color-off);
+border-radius: var(--source-border-radius-off);
+border-width: var(--source-border-width-off);
+border-color: var(--source-border-color-off);
+background: var(--source-bg-off);
+}
+
+.btn-source:pressed {
+color: var(--source-color-on);
+-qsc-icon-color: var(--source-color-on);
+border-radius: var(--source-border-radius-on);
+border-width: var(--source-border-width-on);
+border-color: var(--source-border-color-on);
+background: var(--source-bg-on);
+}
+
+.btn-source:value(1) {
+color: var(--source-color-on);
+-qsc-icon-color: var(--source-color-on);
+border-radius: var(--source-border-radius-on);
+border-width: var(--source-border-width-on);
+border-color: var(--source-border-color-on);
+background: var(--source-bg-on);
+}
+
+.btn-transport {
+color: var(--transport-color-off);
+-qsc-icon-color: var(--transport-color-off);
+border-radius: var(--transport-border-radius-off);
+border-width: var(--transport-border-width-off);
+border-color: var(--transport-border-color-off);
+background: var(--transport-bg-off);
+}
+
+.btn-transport:pressed {
+color: var(--transport-color-on);
+-qsc-icon-color: var(--transport-color-on);
+border-radius: var(--transport-border-radius-on);
+border-width: var(--transport-border-width-on);
+border-color: var(--transport-border-color-on);
+background: var(--transport-bg-on);
+}
+
+.btn-transport:value(1) {
+color: var(--transport-color-on);
+-qsc-icon-color: var(--transport-color-on);
+border-radius: var(--transport-border-radius-on);
+border-width: var(--transport-border-width-on);
+border-color: var(--transport-border-color-on);
+background: var(--transport-bg-on);
+}
+
+/* icon only button classes can be used to apply different buttons style 
+with only an icon to different areas of the UCI */
+
+.btn-navigation-icon-font-only {
+color: var(--navigation-color-off);
+-qsc-icon-color: var(--navigation-color-off);
+border-radius: var(--size-00);
+border-width: var(--size-00);
+border-color: var(--color-trans);
+background: var(--color-trans);
+}
+
+.btn-navigation-icon-font-only:pressed {
+color: var(--navigation-color-on);
+-qsc-icon-color: var(--navigation-color-on);
+}
+
+.btn-navigation-icon-font-only:value(1) {
+color: var(--navigation-color-on);
+-qsc-icon-color: var(--navigation-color-on);
+}
+
+.btn-source-icon-font-only {
+color: var(--source-color-off);
+-qsc-icon-color: var(--source-color-off);
+border-radius: var(--size-00);
+border-width: var(--size-00);
+border-color: var(--color-trans);
+background: var(--color-trans);
+}
+
+.btn-source-icon-font-only:pressed {
+color: var(--source-color-on);
+-qsc-icon-color: var(--source-color-on);
+}
+
+.btn-source-icon-font-only:value(1) {
+color: var(--source-color-on);
+-qsc-icon-color: var(--source-color-on);
+}
+
+.btn-transport-icon-font-only {
+color: var(--transport-color-off);
+-qsc-icon-color: var(--transport-color-off);
+border-radius: var(--size-00);
+border-width: var(--size-00);
+border-color: var(--color-trans);
+background: var(--color-trans);
+}
+
+.btn-transport-icon-font-only:pressed {
+color: var(--transport-color-on);
+-qsc-icon-color: var(--transport-color-on);
+}
+
+.btn-transport-icon-font-only:value(1) {
+color: var(--transport-color-on);
+-qsc-icon-color: var(--transport-color-on);
+}
+
+/* special class for power / mute buttons */
+
+/* .color-bg-mute {background: var(--gradient-e-grn-o);} */
+.color-bg-mute:pressed {background: var(--gradient-e-red-o);}
+.color-bg-mute:value(1) {background: var(--gradient-e-red-o);}
+
+/* .color-bg-power {background: var(--gradient-e-red-o);} */
+.color-bg-power:pressed {background: var(--gradient-e-grn-o);}
+.color-bg-power:value(1) {background: var(--gradient-e-grn-o);}
+
+/* icon color */
+
+.color-icon-blk {-qsc-icon-color: var(--color-blk);}
+.color-icon-global {-qsc-icon-color: var(--global-color);}
+.color-icon-wht {-qsc-icon-color: var(--color-wht);}
+
+/* .color-icon-mute {-qsc-icon-color: var(--color-grn);} */
+.color-icon-mute:pressed {-qsc-icon-color: var(--color-red);}
+.color-icon-mute:value(1) {-qsc-icon-color: var(--color-red);}
+
+/* .color-icon-power {-qsc-icon-color: var(--color-red);} */
+.color-icon-power:pressed {-qsc-icon-color: var(--color-grn);}
+.color-icon-power:value(1) {-qsc-icon-color: var(--color-grn);}
+
+/* fonts classes */
+
+.color-font-blk {color: var(--color-blk);}
+.color-font-dropShadow {color: rgba(0, 0, 0, 0.415);}
+.color-font-global {color: var(--global-color);}
+.color-font-wht {color: var(--color-wht);}
+
+.font-align-top {vertical-align: top;}
+.font-align-middle {vertical-align: center;}
+.font-align-bottom {vertical-align: bottom;}
+.font-align-center {text-align: center;}
+.font-align-left {text-align: left;}
+.font-align-right {text-align: right;}
+
+/* font sizing classes will size the font to the pixel below */
+
+.font-size-12 {font-size: 12px;}   
+.font-size-18 {font-size: 18px;}   
+.font-size-24 {font-size: 24px;}
+.font-size-30 {font-size: 30px;}
+.font-size-36 {font-size: 36px;}
+.font-size-42 {font-size: 42px;}
+.font-size-48 {font-size: 48px;}
+.font-size-54 {font-size: 54px;}
+.font-size-60 {font-size: 60px;}
+.font-size-66 {font-size: 66px;}
+.font-size-88 {font-size: 88px;}
+.font-size-vmin {font-size: 40vmin;}
+
+/* font padding and button margin */
+
+.font-padding-05 {padding: var(--size-05);}
+.font-padding-10 {padding: var(--size-10);}
+.font-padding-15 {padding: var(--size-15);}
+.font-padding-20 {padding: var(--size-20);}
+
+.font-margin-01 {margin: var(--size-01);}
+.font-margin-02 {margin: var(--size-02);}
+.font-margin-05 {margin: var(--size-05);}
+
+/* textbox, listbox & combo box  */
+
+.font-list-combo-box {
+color: var(--global-color);
+border-color: var(--global-border-color);   
+border-width: var(--global-border-width);
+border-radius: var(--global-border-radius);
+background: var(--global-bg);
+}
+
+/* flexbox styles */
+
+.flexbox-row {
+background-color: var(--flex-row-bg);
+border-radius: var(--flex-row-border-radius);
+border-width: var(--flex-row-border-width);
+border-color: var(--flex-row-border-color);
+flex-direction: var(--flex-row-direction);
+flex-wrap: var(--flex-row-wrap);
+justify-content: var(--flex-row-justify);
+align-items: var(--flex-row-align-items); 
+align-content: var(--flex-row-align-content); 
+gap: var(--flex-row-gap);
+}
+
+.flexbox-column {
+background-color: var(--flex-column-bg);
+border-radius: var(--flex-column-border-radius);
+border-width: var(--flex-column-border-width);
+border-color: var(--flex-column-border-color);
+flex-direction: var(--flex-column-direction);
+flex-wrap: var(--flex-column-wrap);
+justify-content: var(--flexbox-justify);
+align-items: var(--flex-column-align-items); 
+align-content: var(--flex-column-align-content); 
+gap: var(--flex-column-gap);
+}
+
+/* icon alignment */
+
+.icon-_align-right {-qsc-icon-align: right;}
+
+/* foundation icon font */
+
+.icon-info {-qsc-icon-font:foundation; -qsc-icon:"info";}
+
+/* material icon font */
+
+.icon-airplay {-qsc-icon-font:material; -qsc-icon:"airplay";}
+
+.icon-sleep {-qsc-icon-font:material; -qsc-icon:"airline_seat_flat";}
+
+/* custom icons */
+
+.icon-addressbook {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e900";}
+
+.icon-auto {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e901";}
+
+.icon-backyard {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e902";}
+
+.icon-bar {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e903";}
+
+.icon-battery-0 {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e904";}
+.icon-battery-1 {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e905";}
+.icon-battery-2 {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e906";}
+.icon-battery-3 {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e907";}
+.icon-battery-4 {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e908";}
+.icon-battery-5 {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e909";}
+
+.icon-bluetooth {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e90a";}
+
+.icon-cafe {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e90b";}
+
+.icon-calendar-event {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e90c";}
+
+.icon-call-answer {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e90d";}
+
+.icon-call-end {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e90e";}
+
+.icon-call-muted {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e90f";}
+
+.icon-camera-eptz-privacy {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e911";}
+.icon-camera-eptz-privacy:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e910";}
+
+.icon-camera-eptz {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e911";}
+
+.icon-camera-ptz-privacy {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e913";}
+.icon-camera-ptz-privacy:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e912";}
+
+.icon-camera-ptz {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e913";}
+
+.icon-casting {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e914";}
+
+.icon-charging {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e915";}
+
+.icon-chevron-dn {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e916";}
+
+.icon-chevron-dn-left {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e917";}
+
+.icon-chevron-dn-right {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e918";}
+
+.icon-chevron-left {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e919";}
+
+.icon-chevron-right {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e91a";}
+
+.icon-chevron-up {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e91b";}
+
+.icon-chevron-up-left {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e91c";}
+
+.icon-chevron-up-right {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e91d";}
+
+.icon-chevron-zoom-minus {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e91e";}
+
+.icon-chevron-zoom-plus {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e91f";}
+
+.icon-chevron-focus-out {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e93d";}
+
+.icon-chevron-focus-in {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e93c";}
+
+.icon-climate {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e920";}
+
+.icon-conference {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e921";}
+
+.icon-connection-digital-link {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e922";}
+
+.icon-connection-hdmi {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e923";}
+
+.icon-connection-lightning {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e924";}
+
+.icon-connection-sources {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e925";}
+
+.icon-connection-usb {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e926";}
+
+.icon-connection-usb-a {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e927";}
+
+.icon-connection-usb-c {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e928";}
+
+.icon-demo {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e929";}
+
+.icon-direction-dn {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e92a";}
+
+.icon-direction-dn-left {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e92b";}
+
+.icon-direction-dn-right {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e92c";}
+
+.icon-direction-left {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e92d";}
+
+.icon-direction-right {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e92e";}
+
+.icon-direction-up {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e92f";}
+
+.icon-direction-up-left {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e930";}
+
+.icon-direction-up-right {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e931";}
+
+.icon-display-projector {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e932";}
+
+.icon-display-projector-mute {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e932";}
+.icon-display-projector-mute:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e933";}
+
+.icon-display-tv {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e934";}
+
+.icon-display-tv-freeze {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e934";}
+.icon-display-tv-freeze:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e936";}
+
+.icon-display-tv-mute {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e934";}
+.icon-display-tv-mute:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e937";}
+
+.icon-display-videowall {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e938";}
+
+.icon-doc-cam {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e939";}
+
+.icon-edit {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e93a";}
+
+.icon-entrance {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e93b";}
+
+.icon-game-sports {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e93e";}
+
+.icon-gears {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e93f";}
+
+.icon-gym {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e940";}
+
+.icon-help {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e941";}
+
+.icon-home {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e942";}
+
+.icon-keypad {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e943";}
+
+.icon-laptop {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e944";}
+
+.icon-laptop-hdmi {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e945";}
+
+.icon-laptop-usb-c {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e946";}
+
+.icon-laptop-wireless {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e947";}
+
+.icon-layout {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e948";}
+
+.icon-lecture-capture {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e949";}
+
+.icon-lens {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e94a";}
+
+.icon-levels {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e94b";}
+
+.icon-lighting-brighter {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e94c";}
+
+.icon-lighting-dimmer {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e94d";}
+
+.icon-link {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e94e";}
+.icon-link:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e94f";}
+
+.icon-lobby {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e950";}
+
+.icon-lock-false {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e951";}
+
+.icon-lock-true {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e952";}
+
+.icon-manual {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e953";}
+
+.icon-maximize {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e954";}
+
+.icon-meal {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e955";}
+
+.icon-menu {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e956";}
+
+.icon-mic-mute {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e958";}
+.icon-mic-mute:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e957";}
+
+.icon-microphone {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e958";}
+
+.icon-mic-wireless-mute {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e95a";}
+.icon-mic-wireless-mute:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e959";}
+
+.icon-microphone-wireless {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e95a";}
+
+.icon-minimize {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e95b";}
+
+.icon-multipurpose {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e95c";}
+
+.icon-music {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e95d";}
+
+.icon-music-mute {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e95d";}
+.icon-music-mute:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e95e";}
+
+.icon-paging {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e95f";}
+
+.icon-pc {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e960";}
+
+.icon-podium {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e961";}
+
+.icon-pool {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e962";}
+
+.icon-porte-cochere {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e963";}
+
+.icon-power {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e964";}
+
+.icon-power-restart {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e965";}
+
+.icon-power-standby {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e966";}
+
+.icon-preset {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e967";}
+
+.icon-room-blinds-closed {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e968";}
+
+.icon-room-blinds-open {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e969";}
+
+.icon-room-blinds-stop {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e97d";}
+
+.icon-room-controls {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e96a";}
+
+.icon-room-lights-low {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e96b";}
+
+.icon-room-lights-med {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e96c";}
+
+.icon-room-lights-off {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e96d";}
+
+.icon-room-lights-on {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e96e";}
+
+.icon-room-mode {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e96f";}
+
+.icon-routing-advanced {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e970";}
+
+.icon-routing-simple {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e971";}
+
+.icon-satellie {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e972";}
+
+.icon-screen {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e973";}
+
+.icon-select {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e974";}
+
+.icon-shutter {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e975";}
+
+.icon-signage {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e976";}
+
+.icon-soundboard {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e977";}
+
+.icon-spa {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e978";}
+
+.icon-surface-speaker {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e979";}
+
+.icon-square-checked {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e97a";}
+.icon-square-checked:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e97b";}
+
+.icon-square-unchecked {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e97b";}
+.icon-square-unchecked:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e97a";}
+
+.icon-status {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e97c";}
+
+.icon-stop {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e97d";}
+
+.icon-test-pattern {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e97e";}
+
+.icon-theater {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e97f";}
+
+.icon-thumbs-dn {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e980";}
+
+.icon-thumbs-up {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e981";}
+
+.icon-timer {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e982";}
+
+.icon-timer-manual {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e983";}
+
+.icon-toggle {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e984";}
+.icon-toggle:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e985";}
+
+.icon-toggle-left {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e984";}
+
+.icon-toggle-right {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e985";}
+
+.icon-touch {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e986";}
+
+.icon-training {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e987";}
+
+.icon-trans-asterisk {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e988";}
+
+.icon-trans-back {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e989";}
+
+.icon-trans-back-up {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e98a";}
+
+.icon-trans-close {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e98b";}
+
+.icon-trans-eject {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e98c";}
+
+.icon-trans-forward {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e98d";}
+
+.icon-trans-loop {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e98e";}
+
+.icon-trans-next {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e98f";}
+
+.icon-trans-pause {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e990";}
+
+.icon-trans-play {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e991";}
+
+.icon-trans-play-pause {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e992";}
+
+.icon-trans-record {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e993";}
+
+.icon-trans-repeat {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e994";}
+
+.icon-trans-rewind {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e995";}
+
+.icon-trans-share {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e996";}
+
+.icon-trans-shuffle {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e997";}
+
+.icon-trans-stop {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e998";}
+
+.icon-volume {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e99b";}
+
+.icon-volume-minus {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e999";}
+
+.icon-volume-mute {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e99b";}
+.icon-volume-mute:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e99a";}
+
+.icon-volume-plus {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e99c";}
+
+.icon-vs-audience-spotlight {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e99e";}
+
+.icon-vs-audience-spotlight-toggle {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e99d";}
+.icon-vs-audience-spotlight-toggle:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e99e";}
+
+.icon-vs-presenter-tracking {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e9a0";}
+
+.icon-vs-presenter-tracking-toggle {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e99f";}
+.icon-vs-presenter-tracking-toggle:value(1) {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e9a0";}
+
+.icon-wan {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e9a1";}
+
+.icon-warning {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e9a2";}
+
+.icon-weights {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e9a3";}
+
+.icon-welcome {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e9a4";}
+
+.icon-wireless {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e9a5";}
+
+.icon-wrench {-qsc-icon-font: Oscar-Origins; -qsc-icon: "\e9a6";}
+
+/* icon extras */
+
+.icon-animal-emu {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e900";}
+
+.icon-animal-rapter {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e901";}
+
+.icon-logo-activeaire {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e902";}
+
+.icon-logo-apple {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e903";}
+
+.icon-logo-apple-tv {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e904";}
+
+.icon-logo-bluray {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e905";}
+
+.icon-logo-brightsign {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e906";}
+
+.icon-logo-brownton {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e907";}
+
+.icon-logo-google-meet {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e908";}
+
+.icon-logo-ms-teams {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e909";}
+
+.icon-logo-nintendo {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e90a";}
+
+.icon-logo-perfect-octive {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e90b";}
+
+.icon-logo-playstation {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e90c";}
+
+.icon-logo-qsys {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e90d";}
+
+.icon-logo-qsys-hex {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e90e";}
+
+.icon-logo-qsys-stacked {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e90f";}
+
+.icon-logo-roku {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e910";}
+
+.icon-logo-spotify {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e911";}
+
+.icon-logo-stb {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e913";}
+
+.icon-logo-wii {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e914";}
+
+.icon-logo-xbox {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e915";}
+
+.icon-logo-zoom-room {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e916";}
+
+.icon-zz-stash {-qsc-icon-font: Oscar-Extras; -qsc-icon: "\e917";}
+
+/* meter class */
+
+meter {
+-qsc-render-style: layer;
+-qsc-meter-indicator-class: meter-indicator;
+background: var(--meter-bg);
+border-radius: var(--size-15);
+}
+
+meter:value(1) {background: var(--meter-indicator-v);} 
+
+.meter-h:value(1) {background: var(--meter-indicator-h);} 
+
+/* fader class  */
+
+fader {
+-qsc-render-style: layer;
+-qsc-fader-slot-class: z-fader-v-slot;
+-qsc-fader-slot-width: var(--fader-slot);
+-qsc-fader-cap-class: z-fader-cap;
+-qsc-fader-cap-width: 60vmin;
+-qsc-fader-cap-height: 60vmin;
+border-radius: var(--fader-border-radius);
+background: var(--fader-bg);
+}
+
+.z-fader-cap {background: var(--fader-cap-bg); border-radius: 50%; border-width: var(--size-05); border-color: var(--fader-cap-border);}
+    .z-fader-v-slot {background: var(--fader-slot-bg); border-radius: 8px;}
+    .z-fader-v-slot:value(1) {background: var(--fader-indicator-v);}
+
+.fader-h {-qsc-render-style: layer; -qsc-fader-slot-class: z-fader-h-slot;}
+    .z-fader-h-slot {background: var(--fader-slot-bg); border-width: 0px; border-radius: 8px;}
+    .z-fader-h-slot:value(1) {background: var(--fader-indicator-h);}
+
+.fader-v-temp {-qsc-render-style: layer; -qsc-fader-slot-class: z-fader-v-temp-slot;}
+    .z-fader-v-temp-slot {background: var(--gradient-temp-v); border-width: 0px; border-radius: 8px;}
+    .z-fader-v-temp-slot:value(1) {background: var(--color-trans);}
+
+.fader-h-temp {-qsc-render-style: layer; -qsc-fader-slot-class: z-fader-h-temp-slot;}
+    .z-fader-h-temp-slot {background: var(--gradient-temp-h); border-width: 0px; border-radius: 8px;}
+    .z-fader-h-temp-slot:value(1) {background: var(--color-trans);}
+
+.fader-v-dim {-qsc-render-style: layer; -qsc-fader-slot-class: z-fader-v-dim-slot;}
+    .z-fader-v-dim-slot {background: var(--gradient-dim-v); border-width: 0px; border-radius: 8px;}
+    .z-fader-v-dim-slot:value(1) {background: var(--color-trans);}
+
+.fader-h-dim {-qsc-render-style: layer; -qsc-fader-slot-class: z-fader-h-dim-slot;}
+    .z-fader-h-dim-slot {background: var(--gradient-dim-h); border-width: 0px; border-radius: 8px;}
+    .z-fader-h-dim-slot:value(1) {background: var(--color-trans);}
+
+/* led can be applied to an LED to change its look */
+
+.led {background:transparent var(--image-led-off); border-width: var(--size-00); border-radius: 50%;}
+.led:value(1) {background:transparent var(--image-led-on);}
+
+/* radius classes */
+.radius-00 {border-radius: 0px 0px 0px 0px;}
+.radius-00:pressed {border-radius: 0px 0px 0px 0px;}
+.radius-00:value(1) {border-radius: 0px 0px 0px 0px;}
+
+.radius-round {border-radius: 50%;}
+.radius-round:value(1) {border-radius: 50%;}
+
+.radius-bottom {border-radius: 0px 0px 20px 20px;}
+.radius-bottom:pressed {border-radius: 0px 0px 20px 20px;}
+.radius-bottom:value(1) {border-radius: 0px 0px 20px 20px;}
+
+.radius-bottom-left {border-radius: 0px 0px 0px 20px;}
+.radius-bottom-left:pressed {border-radius: 0px 0px 0px 20px;}
+.radius-bottom-left:value(1) {border-radius: 0px 0px 0px 20px;}
+
+.radius-bottom-right {border-radius: 0px 0px 20px 0px;}
+.radius-bottom-right:pressed {border-radius: 0px 0px 20px 0px;}
+.radius-bottom-right:value(1) {border-radius: 0px 0px 20px 0px;}
+
+.radius-left {border-radius: 20px 0px 0px 20px;}
+.radius-left:pressed {border-radius: 20px 0px 0px 20px;}
+.radius-left:value(1) {border-radius: 20px 0px 0px 20px;}
+
+.radius-right {border-radius: 0px 20px 20px 0px;}
+.radius-right:pressed {border-radius: 0px 20px 20px 0px;}
+.radius-right:value(1) {border-radius: 0px 20px 20px 0px;}
+
+.radius-top {border-radius: 20px 20px 0px 0px;}
+.radius-top:pressed {border-radius: 20px 20px 0px 0px;}
+.radius-top:value(1) {border-radius: 20px 20px 0px 0px;}
+
+.radius-top-left {border-radius: 20px 0px 0px 0px;}
+.radius-top-left:pressed {border-radius: 20px 0px 0px 0px;}
+.radius-top-left:value(1) {border-radius: 20px 0px 0px 0px;}
+
+.radius-top-right {border-radius: 0px 20px 0px 0px;}
+.radius-top-right:pressed {border-radius: 0px 20px 0px 0px;}
+.radius-top-right:value(1) {border-radius: 0px 20px 0px 0px;}
+
+/* individual border sides */
+
+.stroke-00 {border-width: var(--size-00);}
+.stroke-00:pressed {border-width: var(--size-00);}
+.stroke-00:value(1) {border-width: var(--size-00);}
+
+.stroke-bottom {border-bottom: var(--global-border-width) var(--global-border-color);}
+.stroke-bottom:pressed {border-bottom: var(--global-border-width) var(--global-border-color);}
+.stroke-bottom:value(1) {border-bottom: var(--global-border-width) var(--global-border-color);}
+.stroke-top {border-top: var(--global-border-width) var(--global-border-color);}
+.stroke-top:pressed {border-top: var(--global-border-width) var(--global-border-color);}
+.stroke-top:value(1) {border-top: var(--global-border-width) var(--global-border-color);}
+.stroke-left {border-left: var(--global-border-width) var(--global-border-color);}
+.stroke-left:pressed {border-left: var(--global-border-width) var(--global-border-color);}
+.stroke-left:value(1) {border-left: var(--global-border-width) var(--global-border-color);}
+.stroke-right {border-right: var(--global-border-width) var(--global-border-color);}
+.stroke-right:pressed {border-right: var(--global-border-width) var(--global-border-color);}
+.stroke-right:value(1) {border-right: var(--global-border-width) var(--global-border-color);}
+
+/* panel/uci  */
+
+.uci-accent-black {background: black var(--glossy-bottom); border-radius: var(--global-border-radius); border-width: var(--global-border-width); border-color: var(--color-blk);}
+.uci-accent-global {background: var(--global-gradient); border-radius: var(--global-border-radius); border-width: var(--size-00);}
+
+.uci-border {border-radius: var(--global-border-radius); border-width: var(--global-border-width); border-color: var(--global-border-color);}
+
+.uci-logo {background: var(--logo-background) center / 85% auto  var(--logo); border-radius: var(--global-border-radius);}
+
+.uci-overlay {background: var(--global-overlay-color);}
+
+.uci-page {background: var(--bg);}
+.uci-page-dark {background: url(images/pics/bg-dark.png);}
+.uci-page-dark-50 {background: url(images/pics/bg-dark-50.png);}
+.uci-page-lite {background: url(images/pics/bg-lite.png);}
+.uci-page-lite-50 {background: url(images/pics/bg-lite-50.png);}
+
+.z-a-DO-NOT-USE-BELOW {border-style: 0px;}
+
+/*
+
+Copyright 2026 Prince Technologies
+Permission is hereby granted, free of charge, to any person obtaining a copy 
+of this softwareand associated documentation files (the "Software"), to deal 
+in the Software without restriction, including without limitation the rights 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is furnished
+to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+*/
+
