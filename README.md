@@ -69,6 +69,7 @@ After delay → Meter layer hides
 Configurable:
 
 HIDE_AFTER controls delay duration
+
 Shared Camera Control Framework
 
 A structured approach to controlling multiple third-party cameras using a single UCI control set.
